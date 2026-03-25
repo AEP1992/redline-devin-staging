@@ -13,7 +13,7 @@ export default function Login({ onLogin }) {
     setError('');
     
     setTimeout(() => {
-      if (email === 'devin@redlinegearcleaning.com' && password === 'ENTER') {
+      if (email === 'devin@redlinegearcleaning.com' && password === 'FranGoat') {
         onLogin({ email, name: 'Devin', role: 'ROLE_FRANCHISE' });
       } else {
         setError('Invalid email or password');
