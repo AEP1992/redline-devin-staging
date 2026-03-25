@@ -4,12 +4,13 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { departments, firefighters, allGear } from '../dataProcessor';
+import { useData } from '../useData';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
 export default function DepartmentDetail() {
+  const { departments, firefighters, allGear } = useData();
   const { id } = useParams();
   const navigate = useNavigate();
   const dept = departments.find(d => d.id === Number(id));

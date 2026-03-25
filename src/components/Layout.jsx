@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import RedlineLogo from './RedlineLogo';
+import { useTerritory } from '../TerritoryContext';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: DashboardIcon },
@@ -96,6 +97,7 @@ export default function Layout({ user, onLogout }) {
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-surface-border flex items-center justify-between px-6 flex-shrink-0">
           <RedlineLogo />
+          <TerritoryToggle />
           <div className="flex items-center gap-3 relative">
             <div className="group relative">
               <div className="w-9 h-9 bg-navy rounded-full flex items-center justify-center cursor-pointer" data-testid="button-user-menu">
@@ -171,4 +173,29 @@ function AnalyticsIcon({ className }) {
 
 function MfrIcon({ className }) {
   return <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>;
+}
+
+function TerritoryToggle() {
+  const { territory, setTerritory } = useTerritory();
+  const colors = {
+    'North Texas': { bg: 'bg-[#e11d48]', hover: 'hover:bg-[#be123c]', light: 'bg-red-50 text-[#e11d48]' },
+    'Colorado': { bg: 'bg-[#0891b2]', hover: 'hover:bg-[#0e7490]', light: 'bg-cyan-50 text-[#0891b2]' },
+  };
+  const other = territory === 'North Texas' ? 'Colorado' : 'North Texas';
+  const c = colors[territory] || colors['North Texas'];
+  const cOther = colors[other];
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`px-3 py-1.5 rounded-full text-xs font-bold text-white ${c.bg}`}>
+        {territory}
+      </span>
+      <button
+        onClick={() => setTerritory(other)}
+        className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${cOther.light} border-current hover:opacity-80`}
+      >
+        Switch to {other}
+      </button>
+    </div>
+  );
 }

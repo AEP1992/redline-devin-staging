@@ -4,12 +4,13 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { departments } from '../dataProcessor';
+import { useData } from '../useData';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
 export default function Departments() {
+  const { departments } = useData();
   const navigate = useNavigate();
   const cityChartRef = useRef(null);
   const personnelChartRef = useRef(null);

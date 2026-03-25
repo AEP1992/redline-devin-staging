@@ -4,12 +4,13 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { allGear, gearByType, gearByMfr, uniqueMfrs, globalAvgGearAge } from '../dataProcessor';
+import { useData } from '../useData';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
 export default function GearInventory() {
+  const { allGear, gearByType, gearByMfr, uniqueMfrs, globalAvgGearAge } = useData();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const urlFilter = searchParams.get('filter') || '';

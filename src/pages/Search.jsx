@@ -4,9 +4,10 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { allGear, firefighters, departments, uniqueMfrs, gearByType } from '../dataProcessor';
+import { useData } from '../useData';
 
 export default function Search() {
+  const { allGear, firefighters, departments, uniqueMfrs, gearByType } = useData();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const q = searchParams.get('q') || '';

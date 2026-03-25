@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import Breadcrumb from '../components/Breadcrumb';
-import { allGear, firefighters, departments } from '../dataProcessor';
+import { useData } from '../useData';
 
 export default function GearEdit() {
+  const { allGear, firefighters, departments } = useData();
   const { id } = useParams();
   const navigate = useNavigate();
   const gear = allGear.find(g => g.id === Number(id));

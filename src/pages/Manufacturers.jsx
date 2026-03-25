@@ -3,12 +3,13 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { allGear, uniqueMfrs } from '../dataProcessor';
+import { useData } from '../useData';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
 export default function Manufacturers() {
+  const { allGear, uniqueMfrs } = useData();
   const topMfrChartRef = useRef(null);
   const topMfrCanvasRef = useRef(null);
   const failChartRef = useRef(null);

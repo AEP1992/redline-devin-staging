@@ -4,12 +4,13 @@ import KpiCard from '../components/KpiCard';
 import Breadcrumb from '../components/Breadcrumb';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
-import { departments, firefighters, totals, passRate, statusBreakdown, expiredCount } from '../dataProcessor';
+import { useData } from '../useData';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
 export default function Roster() {
+  const { departments, firefighters, totals, passRate, statusBreakdown, expiredCount } = useData();
   const navigate = useNavigate();
   const [deptFilter, setDeptFilter] = useState('');
   const donutRef = useRef(null);

@@ -4,9 +4,10 @@ import Breadcrumb from '../components/Breadcrumb';
 import StatusBadge from '../components/StatusBadge';
 import DataTable from '../components/DataTable';
 import FirefighterSvg from '../components/FirefighterSvg';
-import { firefighters, isExpired } from '../dataProcessor';
+import { useData } from '../useData';
 
 export default function FirefighterProfile() {
+  const { firefighters, isExpired } = useData();
   const { id } = useParams();
   const navigate = useNavigate();
   const ff = firefighters.find(f => f.id === Number(id));

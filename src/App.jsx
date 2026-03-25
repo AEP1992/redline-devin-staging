@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { TerritoryProvider, useTerritory } from './TerritoryContext';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Departments from './pages/Departments';
@@ -11,6 +12,7 @@ import Search from './pages/Search';
 import GearEdit from './pages/GearEdit';
 import Manufacturers from './pages/Manufacturers';
 import Login from './pages/Login';
+import TerritoryPicker from './pages/TerritoryPicker';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -20,9 +22,23 @@ export default function App() {
   }
 
   return (
+    <TerritoryProvider>
+      <AppWithTerritory user={user} onLogout={() => setUser(null)} />
+    </TerritoryProvider>
+  );
+}
+
+function AppWithTerritory({ user, onLogout }) {
+  const { territory } = useTerritory();
+
+  if (!territory) {
+    return <TerritoryPicker />;
+  }
+
+  return (
     <HashRouter>
       <Routes>
-        <Route element={<Layout user={user} onLogout={() => setUser(null)} />}>
+        <Route element={<Layout user={user} onLogout={onLogout} />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/departments" element={<Departments />} />
           <Route path="/departments/:id" element={<DepartmentDetail />} />
