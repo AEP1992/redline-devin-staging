@@ -19,8 +19,11 @@ export default function TerritoryPicker() {
             </div>
             <span className="text-2xl font-extrabold tracking-tight text-[#c41e24]">REDLINE</span>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Select Your Territory</h1>
-          <p className="text-gray-500 text-sm mt-1">Choose a territory to view its departments, roster, and gear data</p>
+          <h1 className="text-2xl font-bold text-gray-900">Hey Devin</h1>
+          <div className="max-w-2xl mx-auto mt-3 mb-2 bg-navy/5 border border-navy/10 rounded-xl px-5 py-4 text-left">
+            <p className="text-sm text-gray-700 leading-relaxed">This is your sandbox portal. Once you give a general spot check, we will migrate your data. The goal here is to eliminate all data problems prior to ingestion — <span className="font-semibold text-navy">please look at your territories and poke around, and let us know immediately if you see any major issues.</span> Enjoy!</p>
+          </div>
+          <p className="text-gray-500 text-sm mt-4">Select a territory to get started</p>
         </div>
 
         {/* Territory Cards */}
